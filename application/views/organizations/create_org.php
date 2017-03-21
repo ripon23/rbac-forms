@@ -13,7 +13,18 @@
     
     <div class="col-md-8">
     	
-		
+		<?php                		                        
+		if(isset($error))
+		{					 
+		?>
+		<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<?=$error?>
+		</div>
+		<?php
+		}
+        ?>
+        
 		<?php if (isset($error_msg)):?>
         <div class="alert alert-warning">
         	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -30,7 +41,7 @@
             
             
         
-        <form role="form"  id="card-form"  name="card-form" action="" method="post" >      	
+        <form role="form"  id="card-form"  name="card-form" action="" method="post" enctype="multipart/form-data">      	
       	
         <div class="well well-sm"><strong><span class="pull-left" style=" color:red; font-size:22px; margin-right:10px;">*</span> <?php echo lang('required_field')?> </strong></div>
       

@@ -166,7 +166,7 @@ class Organizations extends CI_Controller {
 				/********** Image upload	********************/
 				if(isset($_FILES['org_logo']) && $_FILES['org_logo']['size'] > 0)		
 				{
-
+				echo "Submitted";
 				$config['upload_path'] = RES_DIR."/org/";
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$config['max_size']	= '500';
@@ -203,20 +203,21 @@ class Organizations extends CI_Controller {
 						$this->load->library('image_lib');
 						$this->image_lib->initialize($config2);
 						if ( !$this->image_lib->resize()){
-							$data['error'] = $this->image_lib->display_errors('', '');
+							$data['error'] = $this->image_lib->display_errors();
               				}																		
 						
 						
 						$data['upload_data'] = $this->upload->data();
 						
 						$image_table=array(						
-						'int_outreach_partner_key'=>$original_image						
+						'tx_partner_logo'=>$original_image
 						);				
 		
 					$success_or_fail2=$this->general_model->update_table('outreach_partners',$image_table,'int_outreach_partner_key', $new_org_id);										
 					
+					
 					}							
-				}
+				}				
 				
 				if($new_org_id)
 					$data['success_msg']=lang('saveed_successfully');
